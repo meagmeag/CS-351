@@ -1,0 +1,6 @@
+NO OPTIMIZATION
+hash-00: 354.26 real     341.92 user     9.96 sys        2884 memory (KB)
+hash-01: 22.84 real      16.05 user      2.86 sys        2896 memory (KB)
+hash-02: 15.67 real      14.27 user      1.20 sys        3460 memory (KB)
+hash-03: 16.50 real      15.10 user      1.18 sys        3468 memory (KB)
+hash-04: 14.45 real      13.85 user      0.41 sys        5008908 memory (KB)
