@@ -4,3 +4,17 @@ hash-01: 22.84 real      16.05 user      2.86 sys        2896 memory (KB)
 hash-02: 15.67 real      14.27 user      1.20 sys        3460 memory (KB)
 hash-03: 16.50 real      15.10 user      1.18 sys        3468 memory (KB)
 hash-04: 14.45 real      13.85 user      0.41 sys        5008908 memory (KB)
+
+O2 OPTIMIZATION
+hash-00: 338.41 real     329.27 user     5.95 sys        2880 memory (KB)
+hash-01: 7.93 real       6.76 user       1.07 sys        3464 memory (KB)
+hash-02: 8.36 real       6.90 user       1.24 sys        2884 memory (KB)
+hash-03: 8.27 real       6.80 user       1.21 sys        2904 memory (KB)
+hash-04: 7.21 real       6.64 user       0.40 sys        5011776 memory (KB)
+
+O3 OPTIMIZATION
+hash-00: 337.82 real     330.41 user     4.65 sys        2880 memory (KB)
+hash-01: 8.13 real       6.87 user       1.14 sys        3476 memory (KB)
+hash-02: 8.21 real       6.83 user       1.27 sys        2888 memory (KB)
+hash-03: 8.12 real       6.80 user       1.21 sys        3464 memory (KB)
+hash-04: 7.16 real       6.64 user       0.40 sys        5011784 memory (KB)
