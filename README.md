@@ -38,7 +38,7 @@ hash-04 | 7.16 | 6.64 | 0.40 | 5011784 (KB) | 129,664.80 hashes/second | 47.18
 
 ## QUESTIONS
 1. The >> operation accounts for most of the runtime. Most of the other operations in hash-00 are also in the other, faster programs. Using >> to read in each byte requires many more function calls than the other programs.
-2. There was a sight difference in hash-01 and hash-02's times. With no optimization, hash-02 was consistently ~1-2 seconds faster. However, with all other levels optimization, hash-01 was faster.
-3. hash-03 did not have an appreciable speed difference compared to hash-01 and hash-02. In some runs, it performed better and in others worse, but was generally in the same range as the other two.
-4. hash-04's usage is larger because it maps all of Data.bin to its virtual , so more of its is used at once. Whereas the other programs allocated for only one value or a set of values at a time, using less at any given time while hashing.
+2. There was a sight difference in hash-01 and hash-02's times. With no optimization, hash-02 was consistently ~1-2 seconds faster, indicating alloca() is faster. However, with all other levels optimization, hash-01 was faster.
+3. hash-03 did not have an appreciable speed difference compared to hash-01 and hash-02. In some runs, it performed better and in others worse, but was generally in the same range as the other two. The biggest difference was with no optiimization.
+4. hash-04's usage is larger because it maps all of Data.bin to its virtual memory, so more of it is used at once. Whereas the other programs allocated space for only one value or set of values at a time, using less memory at any given time while hashing.
 6. I tried -O1 and -O3, which made a significant difference in time compared to no optimization but were otherwise comparable to -O2.
