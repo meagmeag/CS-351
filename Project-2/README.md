@@ -17,4 +17,5 @@
 |64| 1.94|16.95|23.39| 8.69|
 |72| 1.95|17.22|18.79| 8.64|
 |80| 1.94|17.02|29.32| 8.69|
+
 ![Graph of speedup as a function of thread count.](threadcount-speedup-graph.JPG)
