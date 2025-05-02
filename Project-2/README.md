@@ -20,4 +20,4 @@
 
 ![Graph of speedup as a function of thread count.](threadcount-speedup-graph.JPG)
 
-1. More threads aren't necessarily better if there aren't enough cores/resources to support every thread at once. In this case, there will be time when there are threads waiting to run because other threads are currently using all the resources. And if threads are waiting, it's not possible for the process to run any faster because the maximum amount of work that can be done in parallel is already being done.
+1. More threads aren't necessarily better if there aren't enough cores/resources to support every thread at once. In this case, there will be time when there are threads waiting to run because other threads are currently using all the resources, or a specific resource a thread needs to continue. And if threads are waiting, it's not possible for the process to run any faster because the maximum amount of work that can be done in parallel is already being done.
