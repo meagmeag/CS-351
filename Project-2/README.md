@@ -21,3 +21,4 @@
 ![Graph of speedup as a function of thread count.](threadcount-speedup-graph.JPG)
 
 1. More threads aren't necessarily better if there aren't enough cores/resources to support every thread at once. In this case, there will be time when there are threads waiting to run because other threads are currently using all the resources, or a specific resource a thread needs to continue. And if threads are waiting, it's not possible for the process to run any faster because the maximum amount of work that can be done in parallel is already being done.
+2. It seems possible (but unlikely) to get "perfect scaling" is there is exactly as many threads as there are cores, the threads are not sharing any data that needs to be synchronized with locks that cause waiting, and there is no serial part of the code (or near zero proportinally, since I suppose it must be serial briefly to create the threads).
