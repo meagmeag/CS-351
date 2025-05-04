@@ -37,17 +37,17 @@ hash-03 | 8.12 | 6.80 | 1.21 | 3464 (KB) | 123,152.71 hashes/second | 41.60
 hash-04 | 7.16 | 6.64 | 0.40 | 5011784 (KB) | 129,664.80 hashes/second | 47.18
 
 ## NO OPTIMIZATON -funroll-loops
-| PROGRAM | REAL TIME | USER TIME | SYS TIME | MEMORY | THROUGHPUT | IMPROVEMENT FROM HASH-00 | TIME DIFFERENCE FROM NO OPTIMIZATON
-| --- | --- | --- | --- | --- | --- | --- |
+| PROGRAM | REAL TIME | USER TIME | SYS TIME | MEMORY | THROUGHPUT | IMPROVEMENT FROM HASH-00 | TIME DIFFERENCE FROM NO OPTIMIZATON |
+| --- | --- | --- | --- | --- | --- | --- | ---
 hash-00 | 357.68 | 342.42 | 5.64 | 2900 (KB) | 2,795.79 hashes/second | --- | +3.42
-hash-01 | 22.60 | 16.34 | 2.05 | 2900 (KB) | 44,247.79 hashes/second | 41.45 | +5.32
-hash-02 | 15.60 | 14.21 | 1.20 | 2908 (KB) | 64,102.56 hashes/second | 41.45 | -0.07
-hash-03 | 16.24 | 14.92 | 1.17 | 2900 (KB) | 61,576.35 hashes/second | 41.66 | -0.26
-hash-04 | 14.63 | 13.78 | 0.45 | 5007764 (KB) | 68,352.70 hashes/second | 43.57 | +0.18
+hash-01 | 22.60 | 16.34 | 2.05 | 2900 (KB) | 44,247.79 hashes/second | 15.82 | +5.32
+hash-02 | 15.60 | 14.21 | 1.20 | 2908 (KB) | 64,102.56 hashes/second | 22.93 | -0.07
+hash-03 | 16.24 | 14.92 | 1.17 | 2900 (KB) | 61,576.35 hashes/second | 22.02 | -0.26
+hash-04 | 14.63 | 13.78 | 0.45 | 5007764 (KB) | 68,352.70 hashes/second | 24.45 | +0.18
 
 ## -O2 -funroll-loops
-| PROGRAM | REAL TIME | USER TIME | SYS TIME | MEMORY | THROUGHPUT | IMPROVEMENT FROM HASH-00 | TIME DIFFERENCE FROM -O2
-| --- | --- | --- | --- | --- | --- | --- |
+| PROGRAM | REAL TIME | USER TIME | SYS TIME | MEMORY | THROUGHPUT | IMPROVEMENT FROM HASH-00 | TIME DIFFERENCE FROM -O2 |
+| --- | --- | --- | --- | --- | --- | --- | ---
 hash-00 | 341.21 | 329.67 | 10.05 | 2900 (KB) | 2,930.75 hashes/second | --- | +2.8
 hash-01 | 8.23 | 6.84 | 1.18 | 2904 (KB) | 123,506.68 hashes/second | 41.45 | +0.3
 hash-02 | 8.23 | 6.66 | 1.28 | 2888 (KB) | 123,506.68 hashes/second | 41.45 | -0.13
