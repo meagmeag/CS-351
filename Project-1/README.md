@@ -36,9 +36,27 @@ hash-02 | 8.21 | 6.83 | 1.27 | 2888 (KB) | 121,802.68 hashes/second | 41.14
 hash-03 | 8.12 | 6.80 | 1.21 | 3464 (KB) | 123,152.71 hashes/second | 41.60
 hash-04 | 7.16 | 6.64 | 0.40 | 5011784 (KB) | 129,664.80 hashes/second | 47.18
 
+## NO OPTIMIZATON -funroll-loops
+| PROGRAM | REAL TIME | USER TIME | SYS TIME | MEMORY | THROUGHPUT | IMPROVEMENT FROM HASH-00 | TIME DIFFERENCE FROM NO OPTIMIZATON
+| --- | --- | --- | --- | --- | --- | --- |
+hash-00 | 357.68 | 342.42 | 5.64 | 2900 (KB) | 2,795.79 hashes/second | --- | +3.42
+hash-01 | 22.60 | 16.34 | 2.05 | 2900 (KB) | 44,247.79 hashes/second | 41.45 | +5.32
+hash-02 | 15.60 | 14.21 | 1.20 | 2908 (KB) | 64,102.56 hashes/second | 41.45 | -0.07
+hash-03 | 16.24 | 14.92 | 1.17 | 2900 (KB) | 61,576.35 hashes/second | 41.66 | -0.26
+hash-04 | 14.63 | 13.78 | 0.45 | 5007764 (KB) | 68,352.70 hashes/second | 43.57 | +0.18
+
+## -O2 -funroll-loops
+| PROGRAM | REAL TIME | USER TIME | SYS TIME | MEMORY | THROUGHPUT | IMPROVEMENT FROM HASH-00 | TIME DIFFERENCE FROM -O2
+| --- | --- | --- | --- | --- | --- | --- |
+hash-00 | 341.21 | 329.67 | 10.05 | 2900 (KB) | 2,930.75 hashes/second | --- | +2.8
+hash-01 | 8.23 | 6.84 | 1.18 | 2904 (KB) | 123,506.68 hashes/second | 41.45 | +0.3
+hash-02 | 8.23 | 6.66 | 1.28 | 2888 (KB) | 123,506.68 hashes/second | 41.45 | -0.13
+hash-03 | 8.19 | 6.87 | 1.16 | 2904 (KB) | 122,100.12 hashes/second | 41.66 | -0.08
+hash-04 | 7.83 | 6.62 | 0.49 | 5006048 (KB) | 127,713.92 hashes/second | 43.57 | +0.62
+
 ## QUESTIONS
 1. The >> operation accounts for most of the runtime. Most of the other operations in hash-00 are also in the other, faster programs. Using >> to read in each byte requires many more function calls than the other programs.
 2. There was a sight difference in hash-01 and hash-02's times. With no optimization, hash-02 was consistently ~1-2 seconds faster, indicating alloca() is faster. However, with all other levels optimization, hash-01 was faster.
 3. hash-03 did not have an appreciable speed difference compared to hash-01 and hash-02. In some runs, it performed better and in others worse, but was generally in the same range as the other two. The biggest difference was with no optiimization.
 4. hash-04's usage is larger because it maps all of Data.bin to its virtual memory, so more of it is used at once. Whereas the other programs allocated space for only one value or set of values at a time, using less memory at any given time while hashing.
-6. I tried -O1 and -O3, which made a significant difference in time compared to no optimization but were otherwise comparable to -O2.
+6. I tried -O1 and -O3, which made a significant difference in time compared to no optimization but were otherwise comparable to -O2. I also tried -funroll-loops, which did not make a significant difference combined with -O2 nor no optimitation; in fact, it was slower in some cases..
