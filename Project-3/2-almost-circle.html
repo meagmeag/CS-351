@@ -10,7 +10,7 @@
                 float vid = float(gl_VertexID);
 
                 const float Pi = 3.14159265359;
-                float angle = vid * 2.0 * Pi / N;
+                float angle = vid * 2.0 * Pi / (N - 2.0);
                 vec2 v = vec2(cos(angle), sin(angle));
 
                 gl_Position = vec4(v, 0.0, 1.0);
