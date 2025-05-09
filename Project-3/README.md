@@ -7,7 +7,7 @@
 ### Star
 [![Star](Images/star.JPG)](3-star.html)
 
-#### Moving star: [See this star move.](Project-3/4-spinny-star.html)
+#### Moving star: [See this star move.](4-spinny-star.html)
 
 ### Chaotic Star (Moving)
 [![ChaoticStar](Images/chaotic-star.JPG)](4.5.1-chaotic-star.html)
@@ -20,7 +20,7 @@
 
 ### Striped Star (Moving)
 [![StripedStar](Images/striped-star.JPG)](5.2-striped-spinny-star.html)
-#### Faster striped star: [See this star faster.](Project-3/5.2.1-fast-striped-spinny-star.html)
+#### Faster striped star: [See this star faster.](5.2.1-fast-striped-spinny-star.html)
 
 ### Soft Striped Star (Moving)
 [![SoftStar](Images/soft-striped.JPG)](5.3-soft-striped-spinny-star.html)
