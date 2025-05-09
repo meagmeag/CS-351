@@ -4,7 +4,7 @@
         <script src="initShaders.js"></script>
 
         <script id="vertex-shader" type="x-shader/x-vertex">
-            uniform float N;
+            uniform float N, t;
 
             void main() {
                 if (gl_VertexID == 0) {
@@ -17,7 +17,7 @@
                 float vid = float(gl_VertexID);
  
                 const float Pi = 3.14159265359;
-                float angle = vid * 2.0 * Pi / (N - 2.0);
+                float angle = vid * 2.0 * Pi / (N - 2.0) + t;
                 vec2 v = radius * vec2(cos(angle), sin(angle));
 
                 gl_Position = vec4(v, 0.0, 1.0);
@@ -59,7 +59,7 @@
                     // Other code we'll need later, in combination with the
                     //   code above marked for later use.
                     gl.uniform1f(uN, N);
-                    //gl.uniform1f(uTime, t);
+                    gl.uniform1f(uTime, t);
 
                     gl.drawArrays(gl.TRIANGLE_FAN, 0, N);
 

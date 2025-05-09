@@ -4,7 +4,8 @@
         <script src="initShaders.js"></script>
 
         <script id="vertex-shader" type="x-shader/x-vertex">
-            uniform float N;
+            uniform float N, t;
+            out float radius, time;
 
             void main() {
                 if (gl_VertexID == 0) {
@@ -12,12 +13,13 @@
                     return;
                 }
 
-                float radius = (gl_VertexID % 2) == 0 ? 1.0 : 0.5;
+                radius = (gl_VertexID % 2) == 0 ? 1.0 : 0.5;
+                time = t * 3.0;
 
                 float vid = float(gl_VertexID);
  
                 const float Pi = 3.14159265359;
-                float angle = vid * 2.0 * Pi / (N - 2.0);
+                float angle = vid * 2.0 * Pi / (N - 2.0) + time;
                 vec2 v = radius * vec2(cos(angle), sin(angle));
 
                 gl_Position = vec4(v, 0.0, 1.0);
@@ -26,10 +28,13 @@
         
     
         <script id="fragment-shader" type="x-shader/x-fragment">
+            in float radius, time;
             out vec4 fColor;
-            
+
             void main() {
-                fColor = vec4(1.0, 1.0, 0.0, 1.0);
+                const vec4 magenta = vec4(0.96, 0.08, 0.35, 1.0);
+                const vec4 turq = vec4(0.08, 0.96, 0.57, 1.0);
+                fColor = mix(magenta, turq, radius / sin(time));
             }
         </script>
 
@@ -59,7 +64,7 @@
                     // Other code we'll need later, in combination with the
                     //   code above marked for later use.
                     gl.uniform1f(uN, N);
-                    //gl.uniform1f(uTime, t);
+                    gl.uniform1f(uTime, t);
 
                     gl.drawArrays(gl.TRIANGLE_FAN, 0, N);
 
