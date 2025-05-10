@@ -35,16 +35,16 @@ const size_t MaxIterations = 1000;
 //
 
 struct Color {
-    using T = unsigned char;
-    T r = 0;
-    T g = 0;
-    T b = 0;
-    
-    __host__ __device__
-    Color() { /* Empty */ }
+	using T = unsigned char;
+	T r = 0;
+	T g = 0;
+	T b = 0;
 
-    __host__ __device__ 
-    Color(T r, T g, T b) : r(r), g(g), b(b) { /* Empty */}
+	__host__ __device__
+		Color() { /* Empty */ }
+
+	__host__ __device__ 
+		Color(T r, T g, T b) : r(r), g(g), b(b) { /* Empty */}
 };
 
 //----------------------------------------------------------------------------
@@ -59,29 +59,29 @@ struct Color {
 
 __device__
 Color setColor(int iterations) {
-    constexpr size_t NumColors = 16;
-    const Color colors[NumColors] = {
-        Color(66, 30, 15),
-        Color(25, 7, 26),
-        Color(9, 1, 47),
-        Color(4, 4, 73),
-        Color(0, 7, 100),
-        Color(12, 44, 138),
-        Color(24, 82, 177),
-        Color(57, 125, 209),
-        Color(134, 181, 229),
-        Color(211, 236, 248),
-        Color(241, 233, 191),
-        Color(248, 201, 95),
-        Color(255, 170, 0),
-        Color(204, 128, 0),
-        Color(153, 87, 0),
-        Color(106, 52, 3)
-    };
+	constexpr size_t NumColors = 16;
+	const Color colors[NumColors] = {
+		Color(66, 30, 15),
+		Color(25, 7, 26),
+		Color(9, 1, 47),
+		Color(4, 4, 73),
+		Color(0, 7, 100),
+		Color(12, 44, 138),
+		Color(24, 82, 177),
+		Color(57, 125, 209),
+		Color(134, 181, 229),
+		Color(211, 236, 248),
+		Color(241, 233, 191),
+		Color(248, 201, 95),
+		Color(255, 170, 0),
+		Color(204, 128, 0),
+		Color(153, 87, 0),
+		Color(106, 52, 3)
+	};
 
-    const Color black;
+	const Color black;
 
-    return iterations < MaxIterations ? colors[iterations % NumColors] : black;
+	return iterations < MaxIterations ? colors[iterations % NumColors] : black;
 }
 
 //----------------------------------------------------------------------------
@@ -108,38 +108,38 @@ Color setColor(int iterations) {
 
 template <typename T>
 struct TComplex {
-    T x = T(0);
-    T y = T(0);
+	T x = T(0);
+	T y = T(0);
 
-    TComplex() = default;
+	TComplex() = default;
 
-    __host__ __device__
-    TComplex(T x, T y) : x(x), y(y) {}
+	__host__ __device__
+		TComplex(T x, T y) : x(x), y(y) {}
 
-    __device__
-    T magnitude() const 
-        { return sqrt(x*x + y*y); }
+	__device__
+		T magnitude() const 
+		{ return sqrt(x*x + y*y); }
 
-    __device__
-    TComplex& operator -= (const TComplex& a)
-        { x -= a.x; y -= a.y; return *this; }
+	__device__
+		TComplex& operator -= (const TComplex& a)
+		{ x -= a.x; y -= a.y; return *this; }
 
-    __device__ __host__
-    friend TComplex operator + (const TComplex& a, const TComplex& b)
-        { return TComplex(a.x + b.x, a.y + b.y); }
+	__device__ __host__
+		friend TComplex operator + (const TComplex& a, const TComplex& b)
+		{ return TComplex(a.x + b.x, a.y + b.y); }
 
-    __device__
-    friend TComplex operator * (const TComplex& a, const TComplex& b)
-        { return TComplex(a.x*b.x - a.y*b.y, a.x*b.y + a.y*b.x); }
+	__device__
+		friend TComplex operator * (const TComplex& a, const TComplex& b)
+		{ return TComplex(a.x*b.x - a.y*b.y, a.x*b.y + a.y*b.x); }
 
-    friend TComplex operator - (const TComplex& a, const TComplex& b)
-        { return TComplex(a.x - b.x, a.y - b.y); }
+	friend TComplex operator - (const TComplex& a, const TComplex& b)
+	{ return TComplex(a.x - b.x, a.y - b.y); }
 
-    friend TComplex operator * (const float s, const TComplex& a)
-        { return TComplex(s * a.x, s * a.y); }
+	friend TComplex operator * (const float s, const TComplex& a)
+	{ return TComplex(s * a.x, s * a.y); }
 
-    friend std::ostream& operator << (std::ostream& os, const TComplex& p)
-        { return os << "(" << p.x << ", " << p.y << ")"; }
+	friend std::ostream& operator << (std::ostream& os, const TComplex& p)
+	{ return os << "(" << p.x << ", " << p.y << ")"; }
 };
 
 using Complex = TComplex<float>;
@@ -173,13 +173,29 @@ inline __device__ float magnitude(const Complex& z) { return z.magnitude(); }
 
 __global__
 void julia(Complex d, Complex center, Color* pixels) {
-    // Add your CUDA implementation of the Julia program here.
-    //
-    // Hint: this function should basically be the same thing as the body
-    //   of the two for loops in the C++ version.  If you're clever, which
-    //   means you choose your variable names well (just like Phil mentions)
-    //   you can pretty much drop in the CPU code, and then do the extra
-    //   CUDA bits
+	// Add your CUDA implementation of the Julia program here.
+	//
+	// Hint: this function should basically be the same thing as the body
+	//   of the two for loops in the C++ version.  If you're clever, which
+	//   means you choose your variable names well (just like Phil mentions)
+	//   you can pretty much drop in the CPU code, and then do the extra
+	//   CUDA bits
+	int i = blockIdx.x * blockDim.x + threadIdx.x;
+	if (i > Width * Height) return;
+	int x = i % Width;
+	int y = i / Width;
+
+            Complex c(x*d.x, y*d.y);
+            c -= center;
+            Complex z;
+            
+            int iter = 0;
+            while (iter < MaxIterations && magnitude(z) < 2.0) {
+                z = z*z + c;
+                ++iter;
+            }
+            
+            pixels[x + y * Width] = setColor(iter);
 }
 
 //----------------------------------------------------------------------------
@@ -211,24 +227,24 @@ void julia(Complex d, Complex center, Color* pixels) {
 //
 
 int main() {
-    Complex ll(-2.1, -2.1);
-    Complex ur( 2.1,  2.1);
-    Complex domain = ur - ll;
-    Complex center = 0.5 * domain;
-    Complex d(domain.x/Width, domain.y/Height);
+	Complex ll(-2.1, -2.1);
+	Complex ur( 2.1,  2.1);
+	Complex domain = ur - ll;
+	Complex center = 0.5 * domain;
+	Complex d(domain.x/Width, domain.y/Height);
 
-    Color* gpuPixels;
-    size_t numBytes = Width * Height * sizeof(Color);
-    CUDA_CHECK_CALL(cudaMalloc(&gpuPixels, numBytes));
+	Color* gpuPixels;
+	size_t numBytes = Width * Height * sizeof(Color);
+	CUDA_CHECK_CALL(cudaMalloc(&gpuPixels, numBytes));
 
-    dim3 blockDim(32, 32);
-    dim3 numBlocks(Width/blockDim.x, Height/blockDim.y);
-    CUDA_CHECK_KERNEL( (julia<<<numBlocks, blockDim>>>(d, center, gpuPixels)) );
+	dim3 blockDim(32, 32);
+	dim3 numBlocks(Width/blockDim.x, Height/blockDim.y);
+	CUDA_CHECK_KERNEL( (julia<<<numBlocks, blockDim>>>(d, center, gpuPixels)) );
 
-    Color* pixels = new Color[Width * Height];
-    CUDA_CHECK_CALL(cudaMemcpy(pixels, gpuPixels, numBytes, cudaMemcpyDeviceToHost));
+	Color* pixels = new Color[Width * Height];
+	CUDA_CHECK_CALL(cudaMemcpy(pixels, gpuPixels, numBytes, cudaMemcpyDeviceToHost));
 
-    std::ofstream ppm("julia.ppm", std::ios::binary);
-    ppm << "P6 " << Width << " " << Height << " " << 255 << "\n";
-    ppm.write(reinterpret_cast<const char*>(&pixels[0]), numBytes);
+	std::ofstream ppm("julia.ppm", std::ios::binary);
+	ppm << "P6 " << Width << " " << Height << " " << 255 << "\n";
+	ppm.write(reinterpret_cast<const char*>(&pixels[0]), numBytes);
 }
