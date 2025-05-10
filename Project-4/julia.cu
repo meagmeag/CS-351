@@ -180,10 +180,8 @@ void julia(Complex d, Complex center, Color* pixels) {
 	//   means you choose your variable names well (just like Phil mentions)
 	//   you can pretty much drop in the CPU code, and then do the extra
 	//   CUDA bits
-	int i = blockIdx.x * blockDim.x + threadIdx.x;
-	if (i > Width * Height) return;
-	int x = i % Width;
-	int y = i / Width;
+	int x = blockIdx.x * blockDim.x + threadIdx.x;
+	int y = blockIdx.y * blockDim.y + threadIdx.y;
 
             Complex c(x*d.x, y*d.y);
             c -= center;
