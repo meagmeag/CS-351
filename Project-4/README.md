@@ -1,4 +1,4 @@
-### iota
+### iota.gpu
 |Vector<br>Length|Wall Clock<br>Time|User Time|System Time|
 |:--:|--:|--:|--:|
 |10| 0.29| 0.01| 0.27|
