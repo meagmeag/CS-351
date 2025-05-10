@@ -1,3 +1,18 @@
+### iota.cpu
+|Vector<br>Length|Wall Clock<br>Time|User Time|System Time|
+|:--:|--:|--:|--:|
+|10| 0.00| 0.00| 0.00|
+|100| 0.00| 0.00| 0.00|
+|1000| 0.00| 0.00| 0.00|
+|10000| 0.00| 0.00| 0.00|
+|100000| 0.00| 0.00| 0.00|
+|1000000| 0.00| 0.00| 0.00|
+|5000000| 0.02| 0.00| 0.02|
+|100000000| 0.58| 0.09| 0.49|
+|500000000| 2.96| 0.47| 2.48|
+|1000000000| 5.84| 0.88| 4.96|
+|5000000000|33.26| 5.84|27.41|
+
 ### iota.gpu
 |Vector<br>Length|Wall Clock<br>Time|User Time|System Time|
 |:--:|--:|--:|--:|
@@ -12,3 +27,5 @@
 |500000000| 3.17| 0.78| 2.39|
 |1000000000| 6.56| 1.65| 4.91|
 |5000000000|42.94| 7.94|35.00|
+
+The result is not expected because the CUDA program performed about the same as (or noticeably worse than, in the case of the largest vector) than the serial C++ program.
